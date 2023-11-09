@@ -1,10 +1,13 @@
 import React from 'react'
+import Spinner from 'react-bootstrap/esm/Spinner'
 
 const Spiner = () => {
   return (
-    <div>
-      hello
+    <>
+    <div className='d-flex justify-content-center align-items-center' style={{width:"100%",height:"50"}}>
+      <Spinner animation="border" variant="danger" />&nbsp; Loading... 
     </div>
+    </>
   )
 }
 

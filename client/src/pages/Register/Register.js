@@ -1,22 +1,83 @@
-import React,{useState} from 'react';
+import React, { useState, setStatus } from 'react';
 //import Card from "react-bootstrap/Card"
+//import Spiner from "../../compoments/Spiner/Spiner"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
+
 import './Register.css';
 
 const Register = () => {
-  const [inputdata,setInputData] = useState ({
-    fname:"",
-    lname:"",
-    email:"",
-    contact:"",
-    gender:"",
-    location:"",
-    departement:""
-  });
- 
 
+  const [inputdata, setInputData] = useState({
+
+    fname: "",
+    lname: "",
+    email: "",
+    contact: "",
+    gender: "",
+    location: "",
+    emploi: "",
+    departement: ""
+  });
+  const [status, setStatus] = useState("Active");
+  const options = [
+    { value: 'Active', label: 'Active' },
+    { value: 'InActive', label: 'InActive' },
+  ];
+
+  // setInput Value
+  const setInputValue = (e) => {
+    const { name, value } = e.target;
+    setInputData({ ...inputdata, [name]: value })
+  }
+  const setStausValue = (e) => {
+    setStatus(e.value)
+  }
+  // submit userdata
+  const submitUserData = (e) => {
+    e.preventDefault();
+
+
+    const { fname, lname, email, contact, location, emploi } = inputdata;
+
+    if (fname === "") {
+      toast.error("first name is Required")
+    } else if (lname === "") {
+      toast.error("Email is Required !")
+    }
+    else if (!email.includes('@')) {
+      toast.error("entre Valid Email")
+    } else if (contact === "") {
+      toast.error("Mobile is Required")
+    } else if (contact.length > 10) {
+      toast.error("Entre Valid Mobile!")
+
+    } else if (location === "") {
+      toast.error("location is Required !")
+
+    } else if (emploi === "") {
+      toast.error("entre")
+
+    }
+    else {
+      toast.success(" Registraction succesful")
+    }
+
+
+  }
+  {/*const data = new FormData();
+  data.append('fname',fname)
+  data.append('lname',lname)
+  data.append('contact', contact)
+  data.append('gender',gender)
+  data.append('status',status)
+  data.append('location',location)
+data.append('emploi',emploi)*/}
 
   return (
-    <div classNamec="container">
+ 
+
+    <div className="container">
 
 
       <h2 className='text-center mt-1' > Enregistrez les coordonnées</h2>
@@ -30,35 +91,35 @@ const Register = () => {
           <div className='row'>
             <div class="mb-3 col-lg-6 col-md-2 col-6">
               <label for="exampleInputEmail1" class="form-label">Prénom</label>
-              <input type="text" name=" fname" class="form-control" id="exampleInputEmail1" />
+              <input type="text" name=" fname" value={inputdata.fname} onChange={setInputValue} class="form-control" id="exampleInputEmail1" />
 
             </div>
             <div class="mb-4 col-lg-6 col-md-4 col-6">
               <label for="exampleInputEmail1" class="form-label">Nom</label>
-              <input type="text" name='lname' class="form-control" id="exampleInputEmail1" />
+              <input type="text" name='lname' value={inputdata.lname} onChange={setInputValue} class="form-control" id="exampleInputEmail1" />
 
             </div>
             <div class="mb-4 col-lg-6 col-md-4 col-6">
               <label for="exampleInputEmail1" class="form-label">Contact</label>
-              <input type="text" name ="contact" class="form-control" id="exampleInputEmail1" placeholder='Entrez le numéro de téléphone' />
+              <input type="text" name="contact" value={inputdata.contact} onChange={setInputValue} class="form-control" id="exampleInputEmail1" placeholder='Entrez le numéro de téléphone' />
             </div>
 
             <div class="mb-4 col-lg-6 col-md-4 col-6">
               <label for="exampleInputEmail1" class="form-label">Email</label>
-              <input type="email" name="email" class="form-control" id="exampleInputEmail1" />
+              <input type="email" name="email" value={inputdata.email} onChange={setInputValue} class="form-control" id="exampleInputEmail1" />
             </div>
             <div class="mb-4 col-lg-6 col-md-4 col-6">
               <label for="exampleInputEmail1" class="form-label">Localisation</label>
-              <input type="text" name ="localisation" class="form-control" id="exampleInputEmail1"  />
+              <input type="text" name="location" value={inputdata.location} onChange={setInputValue} class="form-control" id="exampleInputEmail1" />
             </div>
-            
+
             <div class="mb-4 col-lg-6 col-md-4 col-6">
               <label for="exampleInputEmail1" class="form-label">emploi</label>
-              <input type="email" name=" emploi" class="form-control" id="exampleInputEmail1" />
+              <input type="email" name=" emploi" value={inputdata.emploi} onChange={setInputValue} class="form-control" id="exampleInputEmail1" />
             </div>
             <div class="mb-4 col-lg-6 col-md-2 col-6">
               <label for="selection">Département</label>
-              <select id="selection" name="departement" class="form-control">
+              <select id="selection" name="departement" value={inputdata.departement} onChange={setStausValue} class="form-control">
                 <option value="">-------</option>
 
                 <option value="">Département Informatique</option>
@@ -81,29 +142,35 @@ const Register = () => {
             </div>
 
             <div class="mb-4 col-lg-6 col-md-4 col-6">
-              <label for="exampleInputEmail1" name="gender" class="form-label">Définir le genre</label>
-            <div class="form-check">
-              <label for="exampleInputEmail1" class="form-label">Femme</label>
-              <input class="form-check-input position-static" type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="dd" />
+              <label for="exampleInputEmail1" name="gender" class="form-label">Définir le genre   &nbsp;</label>
+              <br></br>
+              <div class="form-check-inline ">
+                <input class="form-check-input " type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="femme" />
+                <label for="blankRadio1" class="form-check-label ">Femme</label>
               </div>
-              <div class="form-check">
-              <label for="exampleInputEmail1" class="form-label">Homme</label>
-              <input class="form-check-input position-static" type="radio" name="blankRadio" id="blankRadio1" value="option1" aria-label="..." />
+              <div class="form-check-inline ">
+                <input class="form-check-input " type="radio" name="blankRadio" id="blankRadio2" value="option2" aria-label="homme" />
+                <label for="blankRadio2" class="form-check-label">Homme</label>
+              </div>
+            </div>
 
-            </div>
-            </div>
 
-            <div class="mb-3">
-              <label for="fichier"> Fichier CV  </label>
-              <input type="file" class="form-control-file" id="fichier" />
+           
+              <div class="mb-3">
+                <label for="fichier"> Fichier CV &nbsp; </label>
+                <br></br>
+                <input type="file" class="form-control-file" id="fichier" />
+              </div>
             </div>
-          </div>
-          <button type="submit" class="btn btn-primary">Soumettre</button>
+            <button type="submit" class="btn btn-primary">Soumettre</button>
 
         </form>
       </div>
+      <ToastContainer position='top-center' />
     </div>
   )
 }
+
+
 
 export default Register
