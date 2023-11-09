@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .export_btn,.search_btn {
     background: #479C88;
     border: none;
@@ -48,4 +49,56 @@
 .element-a-center{
     margin-left: 20%;
 
+=======
+.export_btn,.search_btn {
+    background: #479C88;
+    border: none;
+    
+}
+.export_btn:hover,.search_btn:hover{
+    background: #1f856d;
+}
+.dropdown_btn {
+    background: none !important;
+    border: none;
+    color: blue;
+    font-size: 20px;
+}
+
+.dropdown-toggle::after {
+    display: none;
+}
+
+.dropdown_btn:hover {
+    color: blue !important;
+}
+.element-droit {
+    position: absolute;
+    right: 13%;
+  
+}
+.conteneur {
+    margin: 0 0 auto;
+    
+}
+.element-a-left{
+
+    text-align: left;
+    margin-left: 12%;
+    
+}
+
+.element-droit-btn {
+
+    margin-left: 52%;
+}
+.element-gauche-btn{
+    
+    margin-left: -290%;
+}
+
+.element-a-center{
+    margin-left: 20%;
+
+>>>>>>> 2b75ad780bd9e2ce699ef4f15447aa095bcda7be
 }
