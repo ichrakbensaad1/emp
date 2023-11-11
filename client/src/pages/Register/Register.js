@@ -3,6 +3,9 @@ import React, { useState, setStatus } from 'react';
 //import Spiner from "../../compoments/Spiner/Spiner"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
+import { BsFiletypePdf } from 'react-icons/bs'
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
 
 import './Register.css';
 
@@ -57,7 +60,6 @@ const Register = () => {
 
     } else if (emploi === "") {
       toast.error("entre")
-
     }
     else {
       toast.success(" Registraction succesful")
@@ -101,7 +103,16 @@ data.append('emploi',emploi)*/}
             </div>
             <div class="mb-4 col-lg-6 col-md-4 col-6">
               <label for="exampleInputEmail1" class="form-label">Contact</label>
-              <input type="text" name="contact" value={inputdata.contact} onChange={setInputValue} class="form-control" id="exampleInputEmail1" placeholder='Entrez le numéro de téléphone' />
+              <PhoneInput
+                    country={"tn"}
+                    id="exampleInputEmail1"
+                    style={{width:"100%"}}
+                    value={inputdata.contact}
+                    onChange={
+                      setInputValue
+                    }
+                />
+              
             </div>
 
             <div class="mb-4 col-lg-6 col-md-4 col-6">
@@ -157,9 +168,20 @@ data.append('emploi',emploi)*/}
 
            
               <div class="mb-3">
-                <label for="fichier"> Fichier CV &nbsp; </label>
-                <br></br>
-                <input type="file" class="form-control-file" id="fichier" />
+              <label
+                  className='flex items-center gap-1 text-base text-ascent-1 hover:text-ascent-1 cursor-pointer'
+                  htmlFor='vgifUpload'>
+                  <input
+                    type='file'
+                    data-max-size='5120'
+                    className='hidden'
+                    style={{display:"none"}}
+                    id='vgifUpload'
+                    accept='.pdf'
+                  />
+                  <BsFiletypePdf />
+                  <span style={{marginLeft:"5px"}}>Joindre CV</span>
+              </label>
               </div>
             </div>
             <button type="submit" class="btn btn-primary">Soumettre</button>
