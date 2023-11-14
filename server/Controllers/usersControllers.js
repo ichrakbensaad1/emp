@@ -1,4 +1,4 @@
-const users = require("models/usersSchema")
+const users = require("../models/userSchema")
 const moment = require ("moment")
 
 
@@ -49,11 +49,12 @@ exports.userget =async(req,res)=>{
 exports.singleuserget = async(req,res)=>{
    const {id}= req.params ;
 
-}
+
 try{
    const userdata = await  users.findOne({_id:id})
 
    
 }catch(error){
    
+}
 }

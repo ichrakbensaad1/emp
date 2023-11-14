@@ -30,8 +30,8 @@ const Register = () => {
 
   // setInput Value
   const setInputValue = (e) => {
-    const { name, value } = e.target;
-    setInputData({ ...inputdata, [name]: value })
+    //const { name, value } = e.target;
+    //setInputData({ ...inputdata, [name]: value })
   }
   const setStausValue = (e) => {
     setStatus(e.value)
