@@ -8,7 +8,7 @@ const router = require("./Route/router");
 const PORT = 6010
 
 
-app.use(cros());
+app.use(cors());
 app.use(express.json());
 app.use(router);
 
