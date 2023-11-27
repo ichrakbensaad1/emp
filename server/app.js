@@ -1,4 +1,5 @@
 require("dotenv").config();
+const bodyParser = require("body-parser");
 const express = require("express");
 const app = express();
 require("./db/conn");
@@ -7,6 +8,9 @@ const router = require("./Route/router");
 
 const PORT = 6010
 
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 app.use(cors());
 app.use(express.json());
