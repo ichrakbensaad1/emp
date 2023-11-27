@@ -1,27 +1,22 @@
 const { MongoClient } = require('mongodb')
+var mongoose = require('mongoose');
 
 
 const DB = process.env.DATABASE
 
 
 async function listDatabases(client){
-    databasesList = await client.db().admin().listDatabases();
+    databasesList = await client.db().listCollections().toArray();
 
-    console.log("Databases:");
-    databasesList.databases.forEach(db => console.log(` - ${db.name}`));
+    console.log(databasesList);
+    //databasesList.collections.forEach(db => console.log(` - ${db.name}`));
 };
 
 async function con(){
-    const client=new MongoClient(DB);
-    try{
-    await client.connect();
-    console.log("Connected to DB");
-    //await listDatabases(client);
-    } catch(e){
-        console.error(e);
-    } finally {
-        await client.close();
-      }
+      mongoose.connect(DB, { useUnifiedTopology: true })
+    .then(() => { console.log('Connected to MongoDB: %s \n ', DB) }) 
+    .catch((err) => { console.log('MongoDB connection error: %s \n', err); })
+
 }
 
 con().catch(console.error)
