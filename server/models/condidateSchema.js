@@ -5,12 +5,10 @@ const condidateSchema = new mongoose.Schema({
     fname:{
         type: String,
         required:true,
-        trim: true
     },
     lname:{
         type: String,
         required:true,
-        trim: true
     },
     email:{
         type: String,
@@ -29,11 +27,6 @@ const condidateSchema = new mongoose.Schema({
         minlengnth:10,
         maxlength:10
     },
-    location:{
-        type: String,
-        required:true,
-        trim: true
-    },
     emploi:{
         type: String,
         required:true,
@@ -44,15 +37,22 @@ const condidateSchema = new mongoose.Schema({
         required:true,
        
     },
-    profile:{
-        type: String,
+    cv:{
+        type: File,
         required:true,
        
     },
     location:{
         type: String,
         required:true,
-       
+    },
+    departement:{
+        type: String,
+        required:true,
+    },
+    status:{
+        type: String,
+        required: true,
     },
     datecreated:Date,
     dateUpadated:Date
