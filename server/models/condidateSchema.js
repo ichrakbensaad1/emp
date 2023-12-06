@@ -32,27 +32,28 @@ const condidateSchema = new mongoose.Schema({
         required:true,
        
     },
+    location:{
+        type: String,
+        required:true,
+    },
     gender:{
         type: String,
         required:true,
        
     },
+    status:{
+        type: String,
+        required: true,
+    }
+    ,
     cv:{
-        type: File,
-        required:true,
-       
-    },
-    location:{
         type: String,
         required:true,
+       
     },
     departement:{
         type: String,
         required:true,
-    },
-    status:{
-        type: String,
-        required: true,
     },
     datecreated:Date,
     dateUpadated:Date
